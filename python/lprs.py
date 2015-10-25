@@ -23,6 +23,7 @@ mva = []
 for img in sys.argv[2:]:
     name = img
     img = cv2.imread(img, 0)
+    cv2.imshow("img", img)
     roi = []
     idx = 0
     for (a,b,c,d) in cas.detectMultiScale(img, 1.3, 2):
@@ -35,7 +36,7 @@ for img in sys.argv[2:]:
         roi = img[roi[1]:roi[1]+roi[3], roi[0]:roi[0]+roi[2]]
         #cv2.imshow("roi", roi); cv2.waitKey(0);
         _, otsu = cv2.threshold(roi, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-        #cv2.imshow("roi", otsu);
+        cv2.imshow("roi", otsu);
         otsuBkup = otsu.copy()
         contours, hierarchy = cv2.findContours(otsu, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
         contours = np.array(contours)
@@ -65,8 +66,8 @@ for img in sys.argv[2:]:
             mva.append(1.0*whiteCount/blkCount)
             # print blkCount, whiteCount
             # Compare number of black and white pixels
-            # cv2.imshow("roi_"+str(idx), temp);cv2.waitKey(0);
             temp = ~temp
+            cv2.imshow("roi_"+str(idx), temp);cv2.waitKey(0);
             cv2.imwrite("output/" + str(idx) + ".jpg", temp);
             roi_nos.append(temp)
             idx = idx + 1
