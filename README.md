@@ -10,5 +10,5 @@ $ ./lprs <classifier> <image>
 For a trial,
 ```
 $ cd python
-$ ./lprs ../xmls/haarcascade_russian_plate_number.xml images/9588DWV.jpg
+$ ./lprs ../xmls/haarcascade_russian_plate_number.xml ../images/9588DWV.jpg
 ```
