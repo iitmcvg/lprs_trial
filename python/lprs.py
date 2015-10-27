@@ -57,6 +57,7 @@ for img in sys.argv[2:]:
 
         roi_nos = []
         idx = 0
+        l = len(contoursFil)
         for cnt in contoursFil:
             x, y, w, h = cv2.boundingRect(cnt)
             temp = otsuBkup[y:y+h, x:x+w]
@@ -67,7 +68,9 @@ for img in sys.argv[2:]:
             # print blkCount, whiteCount
             # Compare number of black and white pixels
             temp = ~temp
-            cv2.imshow("roi_"+str(idx), temp);cv2.waitKey(0);
+            cv2.imshow("roi_"+str(idx), temp);
+            if idx == l-1:
+                cv2.waitKey(0);
             cv2.imwrite("output/" + str(idx) + ".jpg", temp);
             roi_nos.append(temp)
             idx = idx + 1
