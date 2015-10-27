@@ -14,5 +14,5 @@ $ python lprs.py ../xmls/haarcascade_russian_plate_number.xml ../images/9588DWV.
 ```
 ## Dependencies
 
-OpenCV Library
-Numpy module
+* OpenCV Library
+* Numpy module
