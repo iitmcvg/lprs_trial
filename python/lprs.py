@@ -24,6 +24,7 @@ for img in sys.argv[2:]:
     name = img
     img = cv2.imread(img, 0)
     cv2.imshow("img", img)
+    cv2.imwrite("output/" + "input" + ".jpg", img);
     roi = []
     idx = 0
     for (a,b,c,d) in cas.detectMultiScale(img, 1.3, 2):
@@ -37,6 +38,7 @@ for img in sys.argv[2:]:
         #cv2.imshow("roi", roi); cv2.waitKey(0);
         _, otsu = cv2.threshold(roi, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
         cv2.imshow("roi", otsu);
+        cv2.imwrite("output/" + "otsu" + ".jpg", otsu);
         otsuBkup = otsu.copy()
         contours, hierarchy = cv2.findContours(otsu, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
         contours = np.array(contours)
